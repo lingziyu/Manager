@@ -11,67 +11,92 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Data View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="DataViewController" customModule="Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VfB-ql-eUd" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="61" width="343" height="586"/>
+                                <rect key="frame" x="16" y="162" width="343" height="433"/>
                                 <color key="backgroundColor" red="1" green="0.7612304688" blue="0.63283962670000005" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBD-yb-bNb">
+                                <rect key="frame" x="16" y="97" width="343" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2l6-tY-RmM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="VfB-ql-eUd" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="3q1-4u-GMG"/>
-                            <constraint firstAttribute="bottom" secondItem="VfB-ql-eUd" secondAttribute="bottom" constant="20" symbolic="YES" id="p5a-PF-h2b"/>
-                            <constraint firstItem="VfB-ql-eUd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="yxE-zw-Dhk"/>
-                            <constraint firstItem="VfB-ql-eUd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="41" id="zb6-cb-aaJ"/>
+                            <constraint firstItem="VfB-ql-eUd" firstAttribute="top" secondItem="xBD-yb-bNb" secondAttribute="bottom" constant="15" id="DHt-cW-tab"/>
+                            <constraint firstItem="xBD-yb-bNb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Iu4-p8-VXU"/>
+                            <constraint firstItem="xBD-yb-bNb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="QNV-WV-HPW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VfB-ql-eUd" secondAttribute="bottom" constant="23" id="imM-D5-eGe"/>
+                            <constraint firstItem="xBD-yb-bNb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="33" id="pWd-L9-0JG"/>
+                            <constraint firstItem="xBD-yb-bNb" firstAttribute="leading" secondItem="VfB-ql-eUd" secondAttribute="leading" id="plI-VD-QJV"/>
+                            <constraint firstItem="xBD-yb-bNb" firstAttribute="trailing" secondItem="VfB-ql-eUd" secondAttribute="trailing" id="sr1-iC-DjU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="chtChart" destination="VfB-ql-eUd" id="IDf-Xa-mYj"/>
+                        <outlet property="lineChartTitle" destination="xBD-yb-bNb" id="ubP-Lk-wQS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1274" y="841"/>
+            <point key="canvasLocation" x="1877.5999999999999" y="840.62968515742136"/>
         </scene>
-        <!--Item 2-->
+        <!--Data Type Choose View Controller-->
         <scene sceneID="hsP-jD-FLg">
             <objects>
-                <viewController id="qyk-m7-b5Q" sceneMemberID="viewController">
+                <viewController id="qyk-m7-b5Q" customClass="DataTypeChooseViewController" customModule="Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1kz-FW-wLp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tTh-QA-B5Y">
-                                <rect key="frame" x="8" y="169" width="359" height="300"/>
+                                <rect key="frame" x="8" y="191" width="359" height="300"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYG-s7-Hng">
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="5f6-au-5Hj"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="温度"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="Choose Data Type" id="Wlc-ji-tYd"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHr-7f-nbB">
                                         <rect key="frame" x="0.0" y="100" width="359" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="SNH-ia-lbk"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="湿度"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="Choose Data Type" id="G6h-A4-cIU"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngi-pQ-UBc">
                                         <rect key="frame" x="0.0" y="200" width="359" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="zCa-mj-wEp"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="光照"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="Choose Data Type" id="YZm-27-Ony"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -85,13 +110,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YCA-Fu-KBU"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="IVb-xT-OdF"/>
+                    <navigationItem key="navigationItem" id="0CJ-ln-wKh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u82-5s-h6K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="279.19999999999999" y="840.62968515742136"/>
+            <point key="canvasLocation" x="1026" y="841"/>
         </scene>
-        <!--Item 1-->
+        <!--View Controller-->
         <scene sceneID="vWx-KP-v2Y">
             <objects>
                 <viewController id="1IW-gD-mvc" sceneMemberID="viewController">
@@ -101,11 +126,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="ICu-OR-WEE"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="0MV-ZP-3By"/>
+                    <navigationItem key="navigationItem" id="df5-K3-q0C"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qlR-Tg-rVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="278" y="-556"/>
+            <point key="canvasLocation" x="1025" y="-37"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5uW-Mx-XEl">
@@ -117,13 +142,54 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="1IW-gD-mvc" kind="relationship" relationship="viewControllers" id="FQC-Ed-7cj"/>
-                        <segue destination="qyk-m7-b5Q" kind="relationship" relationship="viewControllers" id="9x5-6D-I0W"/>
+                        <segue destination="iMt-Qx-rKw" kind="relationship" relationship="viewControllers" id="FQC-Ed-7cj"/>
+                        <segue destination="E7G-qN-qwc" kind="relationship" relationship="viewControllers" id="9x5-6D-I0W"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BsN-24-9mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-871" y="841"/>
         </scene>
+        <!--数据-->
+        <scene sceneID="M4x-Qz-LBh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="E7G-qN-qwc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="数据" id="IVb-xT-OdF"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bXB-5d-kB9">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qyk-m7-b5Q" kind="relationship" relationship="rootViewController" id="gfc-mO-H4R"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-gT-cfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="278.39999999999998" y="840.17991004497753"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="9dQ-Hw-LP0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iMt-Qx-rKw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 1" id="0MV-ZP-3By"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vcj-U3-Ibs">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1IW-gD-mvc" kind="relationship" relationship="rootViewController" id="NqZ-gY-YnI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sj1-Sf-Ah3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="244.80000000000001" y="-36.881559220389811"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="G6h-A4-cIU"/>
+    </inferredMetricsTieBreakers>
 </document>
