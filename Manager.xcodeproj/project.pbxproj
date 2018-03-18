@@ -9,7 +9,15 @@
 /* Begin PBXBuildFile section */
 		26C7414794255955FD6F796A /* Pods_Manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1554D55FEE53C9237F5BB1 /* Pods_Manager.framework */; };
 		671C8031390F0D70362F11F8 /* Pods_ManagerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED906885BE92D286C981A832 /* Pods_ManagerUITests.framework */; };
-		CF1441112059523800EE702C /* MineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1441102059523800EE702C /* MineTableViewController.swift */; };
+		CF32AB88205E4DBA00E43CC3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32AB87205E4DBA00E43CC3 /* ChatViewController.swift */; };
+		CF32AB8A205E4E2400E43CC3 /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32AB89205E4E2400E43CC3 /* ChatDetailViewController.swift */; };
+		CF32AB8D205E51B900E43CC3 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32AB8C205E51B900E43CC3 /* InfoViewController.swift */; };
+		CF32AB90205E54EA00E43CC3 /* ChatDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32AB8F205E54EA00E43CC3 /* ChatDataSource.swift */; };
+		CF32AB92205E551100E43CC3 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32AB91205E551100E43CC3 /* UserInfo.swift */; };
+		CF32AB94205E552000E43CC3 /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32AB93205E552000E43CC3 /* MessageItem.swift */; };
+		CF32AB97205E556800E43CC3 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32AB96205E556800E43CC3 /* TableView.swift */; };
+		CF32AB99205E558900E43CC3 /* TableHeaderViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32AB98205E558900E43CC3 /* TableHeaderViewCellTableViewCell.swift */; };
+		CF32AB9B205E55AF00E43CC3 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32AB9A205E55AF00E43CC3 /* TableViewCell.swift */; };
 		CF373276204E579100DAA0A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF373275204E579100DAA0A0 /* AppDelegate.swift */; };
 		CF373278204E579100DAA0A0 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF373277204E579100DAA0A0 /* DataViewController.swift */; };
 		CF37327B204E579100DAA0A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF373279204E579100DAA0A0 /* Main.storyboard */; };
@@ -51,7 +59,15 @@
 		86D6E7864C2AAF1628A4FF2A /* Pods-ManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManagerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ManagerTests/Pods-ManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8EBE229C4D19705D6287A0E5 /* Pods-ManagerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManagerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ManagerUITests/Pods-ManagerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC1DF2E982E226B58918C0DB /* Pods-ManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManagerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ManagerTests/Pods-ManagerTests.release.xcconfig"; sourceTree = "<group>"; };
-		CF1441102059523800EE702C /* MineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineTableViewController.swift; sourceTree = "<group>"; };
+		CF32AB87205E4DBA00E43CC3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		CF32AB89205E4E2400E43CC3 /* ChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
+		CF32AB8C205E51B900E43CC3 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		CF32AB8F205E54EA00E43CC3 /* ChatDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatDataSource.swift; path = Manager/Chat/ChatDataSource.swift; sourceTree = SOURCE_ROOT; };
+		CF32AB91205E551100E43CC3 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserInfo.swift; path = Manager/Chat/UserInfo.swift; sourceTree = SOURCE_ROOT; };
+		CF32AB93205E552000E43CC3 /* MessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MessageItem.swift; path = Manager/Chat/MessageItem.swift; sourceTree = SOURCE_ROOT; };
+		CF32AB96205E556800E43CC3 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		CF32AB98205E558900E43CC3 /* TableHeaderViewCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderViewCellTableViewCell.swift; sourceTree = "<group>"; };
+		CF32AB9A205E55AF00E43CC3 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CF373272204E579100DAA0A0 /* Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Manager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF373275204E579100DAA0A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF373277204E579100DAA0A0 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +142,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CF32AB8B205E4E3000E43CC3 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				CF32AB95205E554700E43CC3 /* view */,
+				CF32AB8E205E546F00E43CC3 /* model */,
+				CF32AB89205E4E2400E43CC3 /* ChatDetailViewController.swift */,
+				CF32AB87205E4DBA00E43CC3 /* ChatViewController.swift */,
+				CF32AB8C205E51B900E43CC3 /* InfoViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		CF32AB8E205E546F00E43CC3 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				CF32AB8F205E54EA00E43CC3 /* ChatDataSource.swift */,
+				CF32AB91205E551100E43CC3 /* UserInfo.swift */,
+				CF32AB93205E552000E43CC3 /* MessageItem.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		CF32AB95205E554700E43CC3 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				CF32AB96205E556800E43CC3 /* TableView.swift */,
+				CF32AB98205E558900E43CC3 /* TableHeaderViewCellTableViewCell.swift */,
+				CF32AB9A205E55AF00E43CC3 /* TableViewCell.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		CF373269204E579100DAA0A0 = {
 			isa = PBXGroup;
 			children = (
@@ -154,7 +202,7 @@
 				CF5EA5A3205117620085AF2C /* Supporting Files */,
 				CF5EA5A2205116570085AF2C /* Data */,
 				CF373279204E579100DAA0A0 /* Main.storyboard */,
-				CF1441102059523800EE702C /* MineTableViewController.swift */,
+				CF32AB8B205E4E3000E43CC3 /* Chat */,
 				CF37327C204E579100DAA0A0 /* Assets.xcassets */,
 				CF373281204E579100DAA0A0 /* Info.plist */,
 			);
@@ -494,12 +542,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF373278204E579100DAA0A0 /* DataViewController.swift in Sources */,
+				CF32AB9B205E55AF00E43CC3 /* TableViewCell.swift in Sources */,
 				CF5EA59D2050F0670085AF2C /* ChartValueFormatter.swift in Sources */,
+				CF32AB94205E552000E43CC3 /* MessageItem.swift in Sources */,
+				CF32AB97205E556800E43CC3 /* TableView.swift in Sources */,
+				CF32AB88205E4DBA00E43CC3 /* ChatViewController.swift in Sources */,
 				CF5EA5A1205113560085AF2C /* YAisValueFormatter.swift in Sources */,
-				CF1441112059523800EE702C /* MineTableViewController.swift in Sources */,
+				CF32AB92205E551100E43CC3 /* UserInfo.swift in Sources */,
+				CF32AB8D205E51B900E43CC3 /* InfoViewController.swift in Sources */,
+				CF32AB99205E558900E43CC3 /* TableHeaderViewCellTableViewCell.swift in Sources */,
+				CF32AB90205E54EA00E43CC3 /* ChatDataSource.swift in Sources */,
 				CF5EA59F2051119B0085AF2C /* XAisValueFormatter.swift in Sources */,
 				CF373276204E579100DAA0A0 /* AppDelegate.swift in Sources */,
 				CF5EA59B2050E9800085AF2C /* DataTypeChooseViewController.swift in Sources */,
+				CF32AB8A205E4E2400E43CC3 /* ChatDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
