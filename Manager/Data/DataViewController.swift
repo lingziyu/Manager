@@ -8,6 +8,8 @@
 
 import UIKit
 import Charts
+import Alamofire
+
 
 class DataViewController: UIViewController {
     var numbers : [Double] = []
@@ -45,6 +47,8 @@ class DataViewController: UIViewController {
         time.append(16)
 
         updateGraph()
+        
+        
         
     }
     
