@@ -102,19 +102,22 @@ class TableView:UITableView,UITableViewDelegate, UITableViewDataSource
         }
         super.reloadData()
         
+        if(count > 0){
         //滑向最后一部分
         let secno = self.bubbleSection.count - 1
         let indexPath =  IndexPath(row:(self.bubbleSection[secno] as AnyObject).count,section:secno)
         
         self.scrollToRow(at: indexPath,                at:UITableViewScrollPosition.bottom,animated:true)
+        }
     }
     
     func toDown() {
-        
+        if(self.chatDataSource.rowsForChatTable(self) > 0){
         //滑向最后一部分
         let secno = self.bubbleSection.count - 1
         let indexPath =  IndexPath(row:(self.bubbleSection[secno] as AnyObject).count,section:secno)
         self.scrollToRow(at: indexPath,                at:UITableViewScrollPosition.bottom,animated:true)
+        }
 
     }
     

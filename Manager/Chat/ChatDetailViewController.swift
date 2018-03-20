@@ -62,21 +62,23 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
                         let code = dict["code"] as! Int
                         switch (code){
                         case 0:
-//                            let ruffDatas = dict["ruffData"] as! Array<Dictionary<String,AnyObject>>
-//                            for ruffData in ruffDatas {
-//                                let body = ruffData["content"] as! String
-//                                let user = ruffData["type"] as! String == "0" ? self.me:self.you
-//                                let dateFormatter = DateFormatter()
-//                                // dateFormat需要和输入的字符串相匹配，否则返回nil
-//                                dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-//
-//                                let date = dateFormatter.date(from: ruffData["date"] as! String )
-//                                let chat =  MessageItem(body: body as NSString, user: user!, date:date!, mtype:.someone)
-//
-//                                self.Chats.add(chat)
-//                            }
-                            print("")
-                          
+                            let ruffDatas = dict["chatRecords"] as! Array<Dictionary<String,AnyObject>>
+                            for ruffData in ruffDatas {
+                                let body = ruffData["content"] as! String
+                                let user = ruffData["type"] as! Int == 0 ?  self.me: self.you
+                                let dateFormatter = DateFormatter()
+                                // dateFormat需要和输入的字符串相匹配，否则返回nil
+                                dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+
+                                let date = dateFormatter.date(from: ruffData["date"] as! String )
+                                let mtype = (ruffData["type"] as! Int == 0 ) ? ChatType.mine : ChatType.someone
+                                let chat =  MessageItem(body: body as NSString, user: user!, date:date!, mtype: mtype)
+
+                                self.Chats.add(chat)
+                            }
+                            self.tableView.chatDataSource = self
+                            self.tableView.reloadData()
+
                             
                         case 200:
                             print("无权限访问")
@@ -135,7 +137,9 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
         sendView.addSubview(sendButton)
         self.view.addSubview(sendView)
         
+        
         self.tableView.toDown()
+        
 
 
     }
@@ -161,6 +165,17 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
         
         //self.showTableView()
 //        sender?.resignFirstResponder()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
+        let parameters = [
+            "content": sender!.text!,
+            "type": 0,
+            "date" :formatter.string(from: Date())
+            ] as [String : Any]
+        
+        Alamofire.request("http://120.79.245.126:8010/saveChat", method: .post, parameters: parameters,encoding: JSONEncoding.default)
+
         sender?.text = ""
     }
     
@@ -177,9 +192,9 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
         
         
         
-        let zero =  MessageItem(body:"最近去哪玩了？", user:you,  date:Date(timeIntervalSinceNow:-90096400), mtype:.someone)
+//        let zero =  MessageItem(body:"最近去哪玩了？", user:you,  date:Date(timeIntervalSinceNow:-90096400), mtype:.someone)
         
-        let zero1 =  MessageItem(body:"去了趟苏州，明天发照片给你哈？", user:me,  date:Date(timeIntervalSinceNow:-90096400), mtype:.mine)
+//        let zero1 =  MessageItem(body:"去了趟苏州，明天发照片给你哈？", user:me,  date:Date(timeIntervalSinceNow:-90096400), mtype:.mine)
         
 //        let first =  MessageItem(body:"你看这风景怎么样，我周末去苏州拍的！", user:me,  date:Date(timeIntervalSinceNow:-90000600), mtype:.mine)
         
@@ -189,12 +204,12 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
         
 //        let fouth =  MessageItem(body:"嗯，下次我们一起去吧！",user:me, date:Date(timeIntervalSinceNow:-90000020), mtype:.mine)
         
-        let fifth =  MessageItem(body:"三年了，我终究没能看到这个风景",user:you, date:Date(timeIntervalSinceNow:0), mtype:.someone)
-        let two =  MessageItem(body:"哦",user:me, date:Date(timeIntervalSinceNow:0), mtype:.mine)
+//        let fifth =  MessageItem(body:"三年了，我终究没能看到这个风景",user:you, date:Date(timeIntervalSinceNow:0), mtype:.someone)
+//        let two =  MessageItem(body:"哦",user:me, date:Date(timeIntervalSinceNow:0), mtype:.mine)
 
         
         Chats = NSMutableArray()
-        Chats.addObjects(from: [zero, zero1,fifth,two])
+//        Chats.addObjects(from: [two])
         
         //set the chatDataSource
         self.tableView.chatDataSource = self
