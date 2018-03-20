@@ -14,8 +14,6 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
         if let bar = self.tabBarController {
             bar.tabBar.isHidden = true
         }
-        
-        
        
     }
     
@@ -44,17 +42,19 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
             .addObserver(self,selector: #selector(keyboardWillHide(_:)),
                          name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        func swipedView(){
-            let tapAlert = UIAlertController(title: "Swiped", message: "You just swiped the swipe view", preferredStyle: UIAlertControllerStyle.alert)
-            tapAlert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
-            self.present(tapAlert, animated: true, completion: nil)
-        }
-//
-//        let swipeDownGesture = UISwipeGestureRecognizer(target: self.tableView, action: Selector(("handleDownGesture:")))
-//        swipeDownGesture.direction = UISwipeGestureRecognizerDirection.down
-//        self.view.addGestureRecognizer(swipeDownGesture)
+        //单击监听
+        let tapSingle=UITapGestureRecognizer(target:self,action:#selector(ChatDetailViewController.tapSingleDid))
+
+        self.view.addGestureRecognizer(tapSingle)
+
         
     }
+    
+     @objc func tapSingleDid(){
+        txtMsg?.resignFirstResponder()
+        
+    }
+    
     
     func setupSendPanel()
     {
@@ -214,11 +214,8 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
 
         
     }
-//
-//  func handleSwipeGesture(sender: UISwipeGestureRecognizer){
-//    txtMsg.resignFirstResponder()
-//
-//    }
+
+    
     
  
 }
