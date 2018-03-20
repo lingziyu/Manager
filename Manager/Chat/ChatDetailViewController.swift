@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDelegate {
 
@@ -46,6 +47,54 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
         let tapSingle=UITapGestureRecognizer(target:self,action:#selector(ChatDetailViewController.tapSingleDid))
 
         self.view.addGestureRecognizer(tapSingle)
+        
+        
+        
+        
+        Alamofire.request("http://120.79.245.126:8010/getChat")
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    
+                    if let json = response.result.value {
+                        
+                        let dict = json as! Dictionary<String,AnyObject>
+                        let code = dict["code"] as! Int
+                        switch (code){
+                        case 0:
+//                            let ruffDatas = dict["ruffData"] as! Array<Dictionary<String,AnyObject>>
+//                            for ruffData in ruffDatas {
+//                                let body = ruffData["content"] as! String
+//                                let user = ruffData["type"] as! String == "0" ? self.me:self.you
+//                                let dateFormatter = DateFormatter()
+//                                // dateFormat需要和输入的字符串相匹配，否则返回nil
+//                                dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+//
+//                                let date = dateFormatter.date(from: ruffData["date"] as! String )
+//                                let chat =  MessageItem(body: body as NSString, user: user!, date:date!, mtype:.someone)
+//
+//                                self.Chats.add(chat)
+//                            }
+                            print("")
+                          
+                            
+                        case 200:
+                            print("无权限访问")
+                            
+                        case 400:
+                            print("服务端错误")
+                            
+                            
+                        default:
+                            print("Error Code")
+                        }
+                        
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                }
+        }
 
         
     }
@@ -101,7 +150,7 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
     {
         //composing=false
         let sender = txtMsg
-        let thisChat =  MessageItem(body:sender!.text! as NSString, user:me, date:Date(), mtype:ChatType.mine)
+        let thisChat =  MessageItem(body:sender!.text! as NSString, user:me, date:Date(),mtype:ChatType.mine)
         let thatChat =  MessageItem(body:"你说的是：\(sender!.text!)" as NSString, user:you, date:Date(), mtype:ChatType.someone)
         
         Chats.add(thisChat)
@@ -126,23 +175,26 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
         me = UserInfo(name:"head" ,logo:("head.png"))
         you  = UserInfo(name:"plant", logo:("plant.png"))
         
+        
+        
         let zero =  MessageItem(body:"最近去哪玩了？", user:you,  date:Date(timeIntervalSinceNow:-90096400), mtype:.someone)
         
-        let zero1 =  MessageItem(body:"去了趟苏州，明天发照片给你哈？", user:me,  date:Date(timeIntervalSinceNow:-90086400), mtype:.mine)
+        let zero1 =  MessageItem(body:"去了趟苏州，明天发照片给你哈？", user:me,  date:Date(timeIntervalSinceNow:-90096400), mtype:.mine)
         
-        let first =  MessageItem(body:"你看这风景怎么样，我周末去苏州拍的！", user:me,  date:Date(timeIntervalSinceNow:-90000600), mtype:.mine)
+//        let first =  MessageItem(body:"你看这风景怎么样，我周末去苏州拍的！", user:me,  date:Date(timeIntervalSinceNow:-90000600), mtype:.mine)
         
 //        let second =  MessageItem(image:UIImage(named:"sz.png")!,user:me, date:Date(timeIntervalSinceNow:-90000290), mtype:.mine)
         
-        let third =  MessageItem(body:"太赞了，我也想去那看看呢！",user:you, date:Date(timeIntervalSinceNow:-90000060), mtype:.someone)
+//        let third =  MessageItem(body:"太赞了，我也想去那看看呢！",user:you, date:Date(timeIntervalSinceNow:-90000060), mtype:.someone)
         
-        let fouth =  MessageItem(body:"嗯，下次我们一起去吧！",user:me, date:Date(timeIntervalSinceNow:-90000020), mtype:.mine)
+//        let fouth =  MessageItem(body:"嗯，下次我们一起去吧！",user:me, date:Date(timeIntervalSinceNow:-90000020), mtype:.mine)
         
         let fifth =  MessageItem(body:"三年了，我终究没能看到这个风景",user:you, date:Date(timeIntervalSinceNow:0), mtype:.someone)
-        
+        let two =  MessageItem(body:"哦",user:me, date:Date(timeIntervalSinceNow:0), mtype:.mine)
+
         
         Chats = NSMutableArray()
-        Chats.addObjects(from: [first, third, fouth, fifth, zero, zero1])
+        Chats.addObjects(from: [zero, zero1,fifth,two])
         
         //set the chatDataSource
         self.tableView.chatDataSource = self

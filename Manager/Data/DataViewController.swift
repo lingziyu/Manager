@@ -9,12 +9,16 @@
 import UIKit
 import Charts
 import Alamofire
+import Foundation
+import NVActivityIndicatorView
 
 
 class DataViewController: UIViewController {
     var numbers : [Double] = []
     var time: [Double] = []
     var chartTitle: String?
+    
+    
  
     @IBOutlet weak var lineChartTitle: UILabel!{
         didSet{
@@ -25,32 +29,94 @@ class DataViewController: UIViewController {
     }
     
     @IBOutlet weak var chtChart: LineChartView!
+    struct RuffData:Codable  {
+        let date:String
+        let value:Int
+        let type:DataType
+    }
+    
+    enum DataType:String,Codable {
+        case temp
+        case illum
+        case humid
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        numbers.append(37)
-        time.append(9)
-        numbers.append(38)
-        time.append(10)
-        numbers.append(32)
-         time.append(11)
-        numbers.append(26)
-         time.append(12)
-        numbers.append(30)
-         time.append(13)
-        numbers.append(28)
-         time.append(14)
-        numbers.append(22)
-         time.append(15)
-        numbers.append(23)
-        time.append(16)
+        
+        self.chtChart.noDataText = "数据加载中……"
 
-        updateGraph()
+       
+
+        let cellWidth = Int(self.view.frame.width / 3)
+        let cellHeight = Int(self.view.frame.height / 8)
+        let x = Int(Int(self.view.frame.width / 2) - cellWidth / 2)
+        let y = Int(Int(self.view.frame.height / 2) - cellHeight / 2)
+        let frame = CGRect(x: x, y: y, width: cellWidth, height: cellHeight)
+        let activityIndicatorView = NVActivityIndicatorView(frame: frame,
+                                                            type: NVActivityIndicatorType.lineScale,color: UIColor(red: 0x86/255, green: 0xbe/255, blue: 0xbb/255, alpha: 1), padding: 10)
+        self.view.addSubview(activityIndicatorView)
         
         
+        activityIndicatorView.startAnimating()
+        
+        Alamofire.request("http://120.79.245.126:8010/getData")
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+          
+                    if let json = response.result.value {
+
+                        let dict = json as! Dictionary<String,AnyObject>
+                        let code = dict["code"] as! Int
+                        switch (code){
+                        case 0:
+                            let ruffDatas = dict["ruffData"] as! Array<Dictionary<String,AnyObject>>
+                            for ruffData in ruffDatas {
+                                self.time.append(ruffData["date"] as! Double)
+                            
+                                switch(self.chartTitle){
+                                case "湿度"?:
+                                    self.numbers.append(ruffData["humid"] as! Double)
+                                case "温度"?:
+                                    self.numbers.append(ruffData["temp"] as! Double)
+                                case "光照"?:
+                                    self.numbers.append(ruffData["illum"] as! Double)
+                                case .none:
+                                    print("no data")
+                                case .some(_):
+                                    print("no data")
+                                }
+                            }
+                            activityIndicatorView.stopAnimating()
+                            self.chtChart.noDataText = "暂无数据"
+                            self.updateGraph()
+
+                        case 200:
+                            print("无权限访问")
+
+                        case 400:
+                            print("服务端错误")
+
+                            
+                        default:
+                            print("Error Code")
+                        }
+                        
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                    self.chtChart.noDataText = "暂无数据"
+                }
+        }
+
+
         
     }
+    
+  
     
     
     func updateGraph(){
@@ -123,5 +189,16 @@ class DataViewController: UIViewController {
     }
 
 
+}
+
+
+extension String {
+    func mySubString(to index: Int) -> String {
+        return String(self[..<self.index(self.startIndex, offsetBy: index)])
+    }
+    
+    func mySubString(from index: Int) -> String {
+        return String(self[self.index(self.startIndex, offsetBy: index)...])
+    }
 }
 

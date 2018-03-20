@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-source 'https://github.com/CocoaPods/Specs.git'
+# source 'https://github.com/ninjaprox/NVActivityIndicatorView.git'
 platform :ios, '10.0'
 use_frameworks!
 
@@ -11,6 +11,7 @@ target 'Manager' do
 
   # Pods for Manager
   pod 'Charts'
+  pod 'NVActivityIndicatorView'
   pod 'Alamofire', '~> 4.7'
 
 
@@ -25,4 +26,3 @@ target 'Manager' do
   end
 
 end
-

@@ -1,11 +1,3 @@
-//
-//  MessageItem.swift
-//  Manager
-//
-//  Created by 冰洁  杨 on 2018/3/18.
-//  Copyright © 2018年 冰洁  杨. All rights reserved.
-//
-
 import UIKit
 
 //消息类型，我的还是别人的
@@ -102,4 +94,3 @@ class MessageItem {
         self.init(user:user,  date:date, mtype:mtype, view:imageView, insets:insets)
     }
 }
-
