@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import NVActivityIndicatorView
+
 
 class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDelegate {
 
@@ -15,6 +17,7 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
         if let bar = self.tabBarController {
             bar.tabBar.isHidden = true
         }
+        
        
     }
     
@@ -30,6 +33,19 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
         super.viewDidLoad()
         
 
+        self.tableView = TableView(frame:CGRect(x: 0, y: 20, width: self.view.frame.size.width,
+                                                height: self.view.frame.size.height - 76), style: .plain)
+        
+        
+        let cellWidth = Int(self.view.frame.width / 3)
+        let cellHeight = Int(self.view.frame.height / 8)
+        let x = Int(Int(self.view.frame.width / 2) - cellWidth / 2)
+        let y = Int(Int(self.view.frame.height / 3) - cellHeight / 2)
+        let frame = CGRect(x: x, y: y, width: cellWidth, height: cellHeight)
+        let activityIndicatorView = NVActivityIndicatorView(frame: frame,
+                                                            type: NVActivityIndicatorType.lineScale,color: UIColor.white, padding: 10)
+        self.tableView.addSubview(activityIndicatorView)
+         activityIndicatorView.startAnimating()
         
         setupChatTable()
         setupSendPanel()
@@ -76,8 +92,12 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
 
                                 self.Chats.add(chat)
                             }
+                            
+                             activityIndicatorView.stopAnimating()
+                            
                             self.tableView.chatDataSource = self
                             self.tableView.reloadData()
+                            
 
                             
                         case 200:
@@ -243,8 +263,6 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
     
     func setupChatTable()
     {
-        self.tableView = TableView(frame:CGRect(x: 0, y: 20, width: self.view.frame.size.width,
-                                                height: self.view.frame.size.height - 76), style: .plain)
         
         tableView.autoresizesSubviews = true
         //创建一个重用的单元格

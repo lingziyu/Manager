@@ -28,7 +28,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="2l6-tY-RmM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -63,13 +63,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="监控中心" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUG-N2-VaG">
-                                <rect key="frame" x="16" y="102" width="343" height="54"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <rect key="frame" x="16" y="102" width="343" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="dVA-cx-VzH">
-                                <rect key="frame" x="25" y="203" width="324" height="325"/>
+                                <rect key="frame" x="25" y="192" width="324" height="325"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="dQF-No-uoW">
                                         <rect key="frame" x="0.0" y="0.0" width="324" height="150"/>
@@ -207,9 +207,16 @@
                                             <constraint firstAttribute="width" constant="67" id="905-3y-RvZ"/>
                                             <constraint firstAttribute="height" constant="67" id="ePL-Xt-cSZ"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="talk"/>
+                                        <state key="normal" backgroundImage="camera"/>
+                                        <connections>
+                                            <segue destination="HsX-rJ-bkq" kind="show" id="qqA-fc-LDb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="xTV-ii-i9n" secondAttribute="trailing" constant="86" id="Kte-JD-2Hv"/>
+                                    <constraint firstItem="xTV-ii-i9n" firstAttribute="centerX" secondItem="kOH-FT-wv4" secondAttribute="centerX" id="Tcd-Ht-LMQ"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.52549019607843139" green="0.74509803921568629" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
@@ -223,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qlR-Tg-rVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1024.8" y="-37.331334332833585"/>
+            <point key="canvasLocation" x="1190" y="-37"/>
         </scene>
         <!--Chat Detail View Controller-->
         <scene sceneID="5BN-En-SeK">
@@ -238,7 +245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZzB-sk-oj1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2096.8000000000002" y="-1.3493253373313345"/>
+            <point key="canvasLocation" x="2801" y="-461"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="WIv-TO-ZE7">
@@ -382,7 +389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kL-Dv-R4S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2096.8000000000002" y="-769.56521739130437"/>
+            <point key="canvasLocation" x="2801" y="-1255"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5uW-Mx-XEl">
@@ -425,7 +432,6 @@
         <!--Item-->
         <scene sceneID="fGD-fu-h1D">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yW0-kr-pwR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="0Zo-RM-yJn" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O7Y-jm-RnR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -435,6 +441,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="YiX-Tw-1Sx"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yW0-kr-pwR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="245" y="1783"/>
         </scene>
@@ -457,13 +464,78 @@
             </objects>
             <point key="canvasLocation" x="244.80000000000001" y="-36.881559220389811"/>
         </scene>
+        <!--Plant Recognize View Controller-->
+        <scene sceneID="7eY-qw-ywO">
+            <objects>
+                <viewController id="HsX-rJ-bkq" customClass="PlantRecognizeViewController" customModule="Manager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FAO-cW-a0N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="LaE-Wg-GEB">
+                                <rect key="frame" x="37.5" y="125" width="300" height="432"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="植物识别" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAP-rZ-h4A">
+                                        <rect key="frame" x="77.5" y="0.0" width="145.5" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Bc-pw-AG0">
+                                        <rect key="frame" x="0.0" y="73" width="300" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="q3G-hK-omW"/>
+                                            <constraint firstAttribute="height" constant="300" id="zBx-Ep-rCw"/>
+                                        </constraints>
+                                        <state key="normal" image="camera"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="border">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="takePhoto:" destination="HsX-rJ-bkq" eventType="touchUpInside" id="rNj-Gy-WmH"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击图标拍摄植物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmz-9a-5h9">
+                                        <rect key="frame" x="53" y="403" width="194.5" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.52549019610000003" green="0.74509803919999995" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="LaE-Wg-GEB" firstAttribute="centerY" secondItem="hNV-uM-3yN" secondAttribute="centerY" id="aps-s3-Mvd"/>
+                            <constraint firstItem="LaE-Wg-GEB" firstAttribute="centerX" secondItem="hNV-uM-3yN" secondAttribute="centerX" id="v0z-59-k3f"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hNV-uM-3yN"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JF5-UO-FHl">
+                        <barButtonItem key="rightBarButtonItem" title="相册" id="Bzq-Cc-M8Z">
+                            <connections>
+                                <action selector="Album:" destination="HsX-rJ-bkq" id="dsH-ex-WZ5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cameraButton" destination="1Bc-pw-AG0" id="9LO-MW-SJY"/>
+                        <outlet property="result" destination="gmz-9a-5h9" id="SU7-5q-nFz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qak-RN-zTI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2869.5999999999999" y="378.26086956521743"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="camera" width="64" height="64"/>
         <image name="head" width="55" height="55"/>
         <image name="pic" width="835" height="557"/>
-        <image name="plant" width="330" height="330"/>
+        <image name="plant" width="150" height="150"/>
         <image name="plant-head" width="47" height="47"/>
-        <image name="talk" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="G6h-A4-cIU"/>
