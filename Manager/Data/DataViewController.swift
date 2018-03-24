@@ -19,6 +19,7 @@ class DataViewController: UIViewController {
     var chartTitle: String?
     
     
+    @IBOutlet weak var minetable: UITableView!
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden=false;
 

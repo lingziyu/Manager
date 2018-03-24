@@ -14,6 +14,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var name: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let bar = self.tabBarController {
+            bar.tabBar.isHidden = true
+        }
+        self.navigationController?.isNavigationBarHidden=true;
 
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap)))
     }
