@@ -10,6 +10,8 @@ import UIKit
 import Photos
 import MobileCoreServices
 import Alamofire
+import NVActivityIndicatorView
+
 
 class PlantRecognizeViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -39,7 +41,7 @@ class PlantRecognizeViewController: UIViewController,UIImagePickerControllerDele
         }
     }
     
-    
+    var flag = false;
   
     
     @IBOutlet weak var result: UILabel!
@@ -56,6 +58,7 @@ class PlantRecognizeViewController: UIViewController,UIImagePickerControllerDele
         }
     }
     @IBAction func takePhoto(_ sender: UIButton) {
+        flag = true;
         let picker = UIImagePickerController()
         picker.sourceType = .camera
         picker.mediaTypes = [kUTTypeImage as String]
@@ -74,114 +77,103 @@ class PlantRecognizeViewController: UIViewController,UIImagePickerControllerDele
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = ((info[UIImagePickerControllerEditedImage] ??
             info[UIImagePickerControllerOriginalImage]) as? UIImage) {
-            PHPhotoLibrary.shared().performChanges({
-                let result = PHAssetChangeRequest.creationRequestForAsset(from: image)
-                let assetPlaceholder = result.placeholderForCreatedAsset
-                //保存标志符
-                self.localId = assetPlaceholder?.localIdentifier
-            }) { (isSuccess: Bool, error: Error?) in
-                if isSuccess {
-//                    print("保存成功!")
-                    //通过标志符获取对应的资源
-                    let assetResult = PHAsset.fetchAssets(
-                        withLocalIdentifiers: [self.localId!], options: nil)
-                    let asset = assetResult[0]
-                    let options = PHContentEditingInputRequestOptions()
-                    options.canHandleAdjustmentData = {(adjustmeta: PHAdjustmentData)
-                        -> Bool in
-                        return true
+            
+            
+            if(flag){
+                PHPhotoLibrary.shared().performChanges({
+                    let result = PHAssetChangeRequest.creationRequestForAsset(from: image)
+                    let assetPlaceholder = result.placeholderForCreatedAsset
+                    //保存标志符
+                    self.localId = assetPlaceholder?.localIdentifier
+                    
+                }) { (isSuccess: Bool, error: Error?) in
+                    if isSuccess {
+                      //通过标志符获取对应的资源
+                        let assetResult = PHAsset.fetchAssets(
+                            withLocalIdentifiers: [self.localId!], options: nil)
+                        let asset = assetResult[0]
+                        let options = PHContentEditingInputRequestOptions()
+                        options.canHandleAdjustmentData = {(adjustmeta: PHAdjustmentData)
+                            -> Bool in
+                            return true
+                        }
+                        
+                        //获取保存的缩略图
+                        PHImageManager.default().requestImage(for: asset,
+                                                              targetSize: CGSize(width:300, height:300), contentMode: PHImageContentMode.default,
+                                                              options: nil, resultHandler: { (image, _:[AnyHashable : Any]?) in
+    //                                                            print("获取缩略图成功：\(image)")
+                        })
+                        
                     }
-                    
-                    //获取保存的缩略图
-                    PHImageManager.default().requestImage(for: asset,
-                                                          targetSize: CGSize(width:300, height:300), contentMode: PHImageContentMode.aspectFit,
-                                                          options: nil, resultHandler: { (image, _:[AnyHashable : Any]?) in
-//                                                            print("获取缩略图成功：\(image)")
-                    })
-                    
-                    
-                    
-                    DispatchQueue.main.async(execute: {
-                        self.cameraButton.setBackgroundImage(image, for: .normal)
-                        self.cameraButton.setImage(UIImage(), for: .normal)
-                    })
-                    
-                    
-                    
-                    let imgData = UIImageJPEGRepresentation(image, 1.0)
-                    let baseImg = imgData?.base64EncodedString()
-                    
-                    
-                    
-                    
-//
-//
-//                    //        print(para)
-//                    Alamofire.request("https://aip.baidubce.com/oauth/2.0/token？grant_type=client_credentials&client_id=Ohkna3lbXsSykewnetEghNke&client_secret=OM35yEkHGvGdCUljQrbbuZhxTshz6gXt", method: .post, encoding: JSONEncoding.default)
-//                        .responseJSON { response in
-//                            switch response.result {
-//                            case .success:
-//
-//                                if let json = response.result.value {
-//                                    let dict = json as? Dictionary<String,AnyObject>
-//                                    print(dict!)
-//
-//
-//                                }
-//
-//                            case .failure(let error):
-//                                print(error)
-//                            }
-//                    }
-//
-//
-//
-//
-//
-                    
-                    let parameters = [
-                        "image":baseImg!
-                        ] as [String : Any]
-                    
-                    let headers = ["Content-Type":"application/x-www-form-urlencoded"]
-                    
-                    //        print(para)
-                    Alamofire.request("https://aip.baidubce.com/rest/2.0/image-classify/v1/plant?access_token=24.1d984e2d4fa44df80793808a5e759b2a.2592000.1524226461.282335-10943870", method: .post, parameters: parameters,encoding: JSONEncoding.default, headers:headers)
-                        .responseJSON { response in
-                            switch response.result {
-                            case .success:
-                                
-                                if let json = response.result.value {
-                                    let dict = json as? Dictionary<String,AnyObject>
-                                    //                        print(dict["results"])
-                                     let dic = json as? Array<Dictionary<String,AnyObject>>
-                                    if dic == nil{
-                                        self.result.text = "识别失败"
-                                    }
-                                    else{
-                                        let resultsArray = dict!["result"] as! Array<Dictionary<String,AnyObject>>
-                                        let resultItem = resultsArray[0]
-                                        self.result.text = resultItem["name"] as? String
-                                    }
-                                    
-                                }
-                                
-                            case .failure(let error):
-                                print(error)
-                            }
-                    }
-                    
-                    
-                    
-                    
-                    
-                    
-                   
-                    
-                } else{
-                    print("保存失败：", error!.localizedDescription)
                 }
             }
+            
+            
+            
+            DispatchQueue.main.async(execute: {
+                self.cameraButton.setBackgroundImage(image, for: .normal)
+                self.cameraButton.setImage(UIImage(), for: .normal)
+            })
+            
+            let cellWidth = Int(self.view.frame.width / 3)
+            let cellHeight = Int(self.view.frame.height / 8)
+            let x = Int(Int(self.view.frame.width / 2) - cellWidth / 2)
+            let y = Int(Int(self.view.frame.height) - Int(Double(cellHeight) * 1.5))
+            let frame = CGRect(x: x, y: y, width: cellWidth, height: cellHeight)
+            let activityIndicatorView = NVActivityIndicatorView(frame: frame,
+                                                                type: NVActivityIndicatorType.lineScale,color: UIColor.white, padding: 10)
+            self.view.addSubview(activityIndicatorView)
+            
+            
+            activityIndicatorView.startAnimating()
+            self.result.text = "识别中……"
+
+            
+            
+            let imgData = UIImageJPEGRepresentation(image, 1.0)
+            let baseImg = imgData?.base64EncodedString()
+            
+            
+            
+            
+            
+            let parameters : [String: Any] = [
+                "image":baseImg!
+            ]
+            
+            let headers : HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
+            
+            
+            //        print(para)
+            Alamofire.request("https://aip.baidubce.com/rest/2.0/image-classify/v1/plant?access_token=24.1d984e2d4fa44df80793808a5e759b2a.2592000.1524226461.282335-10943870", method: .post, parameters: parameters,encoding: URLEncoding.httpBody, headers:headers)
+                .responseJSON { response in
+                    switch response.result {
+                    case .success:
+                        debugPrint(response)
+                        if let json = response.result.value {
+                            let dict = json as? Dictionary<String,AnyObject>
+                            print(dict ?? "")
+                            if let resultsArray = dict!["result"] as? Array<Dictionary<String,AnyObject>>{
+                                let resultItem = resultsArray[0]
+                                if let name = resultItem["name"] as? String{
+                                    self.result.text = "识别结果：" + name
+                                    activityIndicatorView.stopAnimating()
+
+                                }
+                            }else{
+                                self.result.text = "识别结果：非植物"
+                                activityIndicatorView.stopAnimating()
+                            }
+                        }
+                        
+                    case .failure(let error):
+                        print(error)
+                    }
+            }
+            
+            
+            
             
            
         }
@@ -204,7 +196,7 @@ class PlantRecognizeViewController: UIViewController,UIImagePickerControllerDele
             bar.tabBar.isHidden = true
         }
         
-              
+        self.navigationController?.isNavigationBarHidden=false;
     }
     
 

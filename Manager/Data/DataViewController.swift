@@ -19,7 +19,11 @@ class DataViewController: UIViewController {
     var chartTitle: String?
     
     
- 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden=false;
+
+    }
+    
     @IBOutlet weak var lineChartTitle: UILabel!{
         didSet{
             if chartTitle != nil {

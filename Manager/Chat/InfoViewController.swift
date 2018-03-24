@@ -14,6 +14,8 @@ class InfoViewController: UIViewController {
         if let bar = self.tabBarController {
             bar.tabBar.isHidden = true
         }
+        self.navigationController?.isNavigationBarHidden=false;
+
     }
     
 

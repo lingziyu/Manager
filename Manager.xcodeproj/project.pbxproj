@@ -30,6 +30,7 @@
 		CF5EA59D2050F0670085AF2C /* ChartValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5EA59C2050F0670085AF2C /* ChartValueFormatter.swift */; };
 		CF5EA59F2051119B0085AF2C /* XAisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5EA59E2051119B0085AF2C /* XAisValueFormatter.swift */; };
 		CF5EA5A1205113560085AF2C /* YAisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5EA5A0205113560085AF2C /* YAisValueFormatter.swift */; };
+		CFA377B5206662F900805173 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA377B4206662F900805173 /* LoginViewController.swift */; };
 		CFA95E19206268050029CC2A /* PlantRecognizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA95E18206268050029CC2A /* PlantRecognizeViewController.swift */; };
 		CFA95E1B206287D70029CC2A /* Uitility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA95E1A206287D70029CC2A /* Uitility.swift */; };
 		DD25EE60CCECF2816EF2C5E6 /* Pods_ManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A40DDDE4BBC5CCDAF7DA5C3 /* Pods_ManagerTests.framework */; };
@@ -101,6 +102,7 @@
 		CF5EA59C2050F0670085AF2C /* ChartValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartValueFormatter.swift; sourceTree = "<group>"; };
 		CF5EA59E2051119B0085AF2C /* XAisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAisValueFormatter.swift; sourceTree = "<group>"; };
 		CF5EA5A0205113560085AF2C /* YAisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAisValueFormatter.swift; sourceTree = "<group>"; };
+		CFA377B4206662F900805173 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CFA95E18206268050029CC2A /* PlantRecognizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantRecognizeViewController.swift; sourceTree = "<group>"; };
 		CFA95E1A206287D70029CC2A /* Uitility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uitility.swift; sourceTree = "<group>"; };
 		ED906885BE92D286C981A832 /* Pods_ManagerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ManagerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +219,7 @@
 		CF373274204E579100DAA0A0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				CFA377B4206662F900805173 /* LoginViewController.swift */,
 				CF5EA5A3205117620085AF2C /* Supporting Files */,
 				CF5EA5A2205116570085AF2C /* Data */,
 				CF373279204E579100DAA0A0 /* Main.storyboard */,
@@ -565,6 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFA377B5206662F900805173 /* LoginViewController.swift in Sources */,
 				CF373278204E579100DAA0A0 /* DataViewController.swift in Sources */,
 				CFA95E1B206287D70029CC2A /* Uitility.swift in Sources */,
 				CF32AB9B205E55AF00E43CC3 /* TableViewCell.swift in Sources */,

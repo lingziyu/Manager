@@ -11,6 +11,9 @@ import UIKit
 class DataTypeChooseViewController: UIViewController {
 
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden=true;
+    }
     
     // MARK: - Navigation
 

@@ -17,7 +17,7 @@ class ChatDetailViewController: UIViewController , ChatDataSource,UITextFieldDel
         if let bar = self.tabBarController {
             bar.tabBar.isHidden = true
         }
-        
+        self.navigationController?.isNavigationBarHidden=false;
        
     }
     

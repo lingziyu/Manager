@@ -20,6 +20,7 @@ class ChatViewController: UIViewController {
         if let bar = self.tabBarController {
             bar.tabBar.isHidden = false
         }
+        self.navigationController?.isNavigationBarHidden=true;
         
     }
     
