@@ -1,14 +1,14 @@
 //
-//  MineViewController.swift
+//  SettingViewController.swift
 //  Manager
 //
-//  Created by 冰洁  杨 on 2018/3/24.
+//  Created by 冰洁  杨 on 2018/3/25.
 //  Copyright © 2018年 冰洁  杨. All rights reserved.
 //
 
 import UIKit
 
-class MineViewController: UIViewController {
+class SettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
