@@ -9,9 +9,19 @@
 import UIKit
 
 class MineViewController: UIViewController {
-
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let bar = self.tabBarController {
+            bar.tabBar.isHidden = false
+        }
+        self.navigationController?.isNavigationBarHidden=true;
+        
+    }
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+     
 
         // Do any additional setup after loading the view.
     }
@@ -20,6 +30,8 @@ class MineViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
 
     /*

@@ -10,8 +10,17 @@ import UIKit
 
 class SettingViewController: UIViewController {
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let bar = self.tabBarController {
+            bar.tabBar.isHidden = true
+        }
+        self.navigationController?.isNavigationBarHidden=false;
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        
 
         // Do any additional setup after loading the view.
     }

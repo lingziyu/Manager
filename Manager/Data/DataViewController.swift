@@ -15,14 +15,16 @@ import NVActivityIndicatorView
 
 class DataViewController: UIViewController {
     var numbers : [Double] = []
-    var time: [Double] = []
+    static var time: [String] = []
     var chartTitle: String?
     
     
     @IBOutlet weak var minetable: UITableView!
     override func viewWillAppear(_ animated: Bool) {
+        if let bar = self.tabBarController {
+            bar.tabBar.isHidden = true
+        }
         self.navigationController?.isNavigationBarHidden=false;
-
     }
     
     @IBOutlet weak var lineChartTitle: UILabel!{
@@ -66,6 +68,7 @@ class DataViewController: UIViewController {
         
         activityIndicatorView.startAnimating()
         
+        
         Alamofire.request("http://120.79.245.126:8010/getData")
             .responseJSON { response in
                 switch response.result {
@@ -77,9 +80,13 @@ class DataViewController: UIViewController {
                         let code = dict["code"] as! Int
                         switch (code){
                         case 0:
+                            
+                            DataViewController.time.removeAll()
                             let ruffDatas = dict["ruffData"] as! Array<Dictionary<String,AnyObject>>
                             for ruffData in ruffDatas {
-                                self.time.append(ruffData["date"] as! Double)
+                                if let a = ruffData["date"] as? String{
+                                    DataViewController.time.append(a)
+                                }
                             
                                 switch(self.chartTitle){
                                 case "湿度"?:
@@ -127,23 +134,23 @@ class DataViewController: UIViewController {
     func updateGraph(){
         var lineChartEntry  = [ChartDataEntry]() //this is the Array that will eventually be displayed on the graph.
         
-        
+//        let a = (self.numbers.count > 10) ? 10 : self.numbers.count
         //here is the for loop
-        for i in 0..<numbers.count {
+        for i in 0..<self.numbers.count  {
             
-            let value = ChartDataEntry(x: time[i], y: numbers[i]) // here we set the X and Y status in a data chart entry
+            let value = ChartDataEntry(x: Double(i), y: numbers[i]) // here we set the X and Y status in a data chart entry
             lineChartEntry.append(value) // here we add it to the data set
         }
         
-        chtChart.animate(xAxisDuration: 1.0, yAxisDuration: 1.0)
+        chtChart.animate(xAxisDuration: 1.0, yAxisDuration: 2.0, easingOption: .easeOutCirc)
         chtChart.chartDescription?.enabled = false
         chtChart.rightAxis.enabled = false
         chtChart.xAxis.drawGridLinesEnabled  = false
         chtChart.xAxis.labelPosition = XAxis.LabelPosition.bottom
         chtChart.legend.enabled = false
-        
-        
-
+        chtChart.pinchZoomEnabled  = true
+//        let b = CGAffineTransform(scaleX: CGFloat(2), y: CGFloat(1))
+//        chtChart.viewPortHandler.refresh( newMatrix: __CGAffineTransformMake(1.5, 0, 0, 1, 0, 0), chart: chtChart, invalidate: false)
         if chartTitle != nil{
             let xtimeFormatter = NumberFormatter()
             xtimeFormatter.numberStyle = .decimal
