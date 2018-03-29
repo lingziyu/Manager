@@ -1,33 +1,17 @@
 //
-//  MineViewController.swift
+//  IndexViewController.swift
 //  Manager
 //
-//  Created by 冰洁  杨 on 2018/3/24.
+//  Created by 冰洁  杨 on 2018/3/29.
 //  Copyright © 2018年 冰洁  杨. All rights reserved.
 //
 
 import UIKit
 
-class MineViewController: UIViewController {
-    
-    @IBOutlet weak var tableView: UITableView!
-    
-    override func viewWillAppear(_ animated: Bool) {
-        if let bar = self.tabBarController {
-            bar.tabBar.isHidden = false
-        }
-        self.navigationController?.isNavigationBarHidden=true;
-        
-    }
-    
-    @IBAction func logout(_ sender: Any) {
-        UserDefaults.standard.removeObject(forKey: "name")
-        UserDefaults.standard.removeObject(forKey: "password")
-        UserDefaults.standard.removeObject(forKey: "auth")
+class IndexViewController: UIViewController {
 
-    }
     override func viewDidLoad() {
-     
+        super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
@@ -36,8 +20,6 @@ class MineViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
     
 
     /*

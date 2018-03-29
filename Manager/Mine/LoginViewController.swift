@@ -7,30 +7,101 @@
 //
 
 import UIKit
+import Alamofire
+
 
 class LoginViewController: UIViewController {
-
+  
+    
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var name: UITextField!
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
+        
+        
+        
+        
+        
         if let bar = self.tabBarController {
             bar.tabBar.isHidden = true
         }
         self.navigationController?.isNavigationBarHidden=true;
 
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap)))
+        
+        if let name = UserDefaults.standard.string(forKey: "name"), let password = UserDefaults.standard.string(forKey: "password"){
+            self.name.text = name;
+            self.password.text = password
+            
+            
+            let sb = UIStoryboard(name: "Main", bundle:nil)
+            let vc = sb.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
+            self.present(vc, animated: true, completion: nil)
+            
+            
+        }
+
+    
+
+        
+        
     }
 
+    @IBAction func login(_ sender: Any) {
+        
+        
+        let parameters : [String: Any] = [
+            "userId":name.text ?? "",
+            "password":password.text ?? "",
+        ]
+        
+
+        Alamofire.request("http://120.79.245.126:8010/login", method: .post, parameters: parameters,encoding: JSONEncoding.default)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    debugPrint(response)
+                    if let json = response.result.value {
+                        let dict = json as? Dictionary<String,AnyObject>
+                        
+                        if(dict!["code"]as? Int==0){
+                            let auth = dict!["auth"] as! String
+                           
+                            UserDefaults.standard.setValue(self.name.text, forKey: "name")
+                            UserDefaults.standard.setValue(self.password.text, forKey: "password")
+                            UserDefaults.standard.setValue(auth, forKey: "auth")
+                            
+                            
+                            let sb = UIStoryboard(name: "Main", bundle:nil)
+                            let vc = sb.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
+                            self.present(vc, animated: true, completion: nil)
+                            
+                        }else{
+                            
+                            
+                        }
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                }
+        }
+        
+        
+        
+        
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
-        
+     
+       
         let border = CALayer()
         let width = CGFloat(2.0)
         border.borderColor = UIColor.white.cgColor
