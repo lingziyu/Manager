@@ -12,8 +12,7 @@ target 'Manager' do
   # Pods for Manager
   pod 'Charts'
   pod 'NVActivityIndicatorView'
-  pod 'Alamofire', '~> 4.7'
-
+  pod 'Alamofire'
 
   target 'ManagerTests' do
     inherit! :search_paths

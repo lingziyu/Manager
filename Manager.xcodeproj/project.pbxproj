@@ -30,6 +30,7 @@
 		CF5EA59D2050F0670085AF2C /* ChartValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5EA59C2050F0670085AF2C /* ChartValueFormatter.swift */; };
 		CF5EA59F2051119B0085AF2C /* XAisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5EA59E2051119B0085AF2C /* XAisValueFormatter.swift */; };
 		CF5EA5A1205113560085AF2C /* YAisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5EA5A0205113560085AF2C /* YAisValueFormatter.swift */; };
+		CF80ACD820726585009EC81D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF80ACD720726585009EC81D /* Alamofire.framework */; };
 		CFA377B5206662F900805173 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA377B4206662F900805173 /* LoginViewController.swift */; };
 		CFA377BE206691A900805173 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA377BD206691A900805173 /* MineViewController.swift */; };
 		CFA95E19206268050029CC2A /* PlantRecognizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA95E18206268050029CC2A /* PlantRecognizeViewController.swift */; };
@@ -104,6 +105,7 @@
 		CF5EA59C2050F0670085AF2C /* ChartValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartValueFormatter.swift; sourceTree = "<group>"; };
 		CF5EA59E2051119B0085AF2C /* XAisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAisValueFormatter.swift; sourceTree = "<group>"; };
 		CF5EA5A0205113560085AF2C /* YAisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAisValueFormatter.swift; sourceTree = "<group>"; };
+		CF80ACD720726585009EC81D /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA377B4206662F900805173 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CFA377BD206691A900805173 /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
 		CFA95E18206268050029CC2A /* PlantRecognizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantRecognizeViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF80ACD820726585009EC81D /* Alamofire.framework in Frameworks */,
 				CF3732A3204E594C00DAA0A0 /* Charts.framework in Frameworks */,
 				26C7414794255955FD6F796A /* Pods_Manager.framework in Frameworks */,
 			);
@@ -157,6 +160,7 @@
 		94D21716610886AAFABBD1C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF80ACD720726585009EC81D /* Alamofire.framework */,
 				CF3732A4204E594C00DAA0A0 /* Charts.framework */,
 				3F1554D55FEE53C9237F5BB1 /* Pods_Manager.framework */,
 				3A40DDDE4BBC5CCDAF7DA5C3 /* Pods_ManagerTests.framework */,
@@ -296,7 +300,6 @@
 				CF37326F204E579100DAA0A0 /* Frameworks */,
 				CF373270204E579100DAA0A0 /* Resources */,
 				0B1D13296D03CC31B4A47F4C /* [CP] Embed Pods Frameworks */,
-				261411A596A98B3CFE5376B1 /* [CP] Copy Pods Resources */,
 				CF29E803205FD31400E4B243 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -316,8 +319,6 @@
 				CF373282204E579100DAA0A0 /* Sources */,
 				CF373283204E579100DAA0A0 /* Frameworks */,
 				CF373284204E579100DAA0A0 /* Resources */,
-				2DA87EBDC99069F23D73C742 /* [CP] Embed Pods Frameworks */,
-				5194CFB9E2CA8B3E7EE2A4F7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -337,8 +338,6 @@
 				CF37328D204E579100DAA0A0 /* Sources */,
 				CF37328E204E579100DAA0A0 /* Frameworks */,
 				CF37328F204E579100DAA0A0 /* Resources */,
-				3CAF62667EA7C3FFCAD03F5F /* [CP] Embed Pods Frameworks */,
-				A3298987A245570AA536C4FF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -357,7 +356,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "冰洁  杨";
 				TargetAttributes = {
 					CF373271204E579100DAA0A0 = {
@@ -446,51 +445,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Manager/Pods-Manager-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		261411A596A98B3CFE5376B1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Manager/Pods-Manager-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2DA87EBDC99069F23D73C742 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ManagerTests/Pods-ManagerTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3CAF62667EA7C3FFCAD03F5F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ManagerUITests/Pods-ManagerUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4F4DA1784382D2D5B25BBB90 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -509,21 +463,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5194CFB9E2CA8B3E7EE2A4F7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ManagerTests/Pods-ManagerTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		622066167D4BA5FA34AB42D8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -540,21 +479,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A3298987A245570AA536C4FF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ManagerUITests/Pods-ManagerUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DC66000691155C23AC0174AB /* [CP] Check Pods Manifest.lock */ = {
@@ -670,6 +594,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -677,6 +602,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -727,6 +653,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -734,6 +661,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -772,6 +700,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SK57NE8988;
 				INFOPLIST_FILE = Manager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.tongji.yangbingjie.Manager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -790,6 +719,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SK57NE8988;
 				INFOPLIST_FILE = Manager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.tongji.yangbingjie.Manager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
