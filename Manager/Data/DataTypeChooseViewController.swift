@@ -11,6 +11,14 @@ import UIKit
 class DataTypeChooseViewController: UIViewController {
 
 
+    override func viewWillAppear(_ animated: Bool) {
+        if let bar = self.tabBarController {
+            bar.tabBar.isHidden = false
+        }
+        self.navigationController?.isNavigationBarHidden=true;
+        
+    }
+
     
     // MARK: - Navigation
 

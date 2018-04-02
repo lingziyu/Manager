@@ -55,13 +55,8 @@ class TableView:UITableView,UITableViewDelegate, UITableViewDataSource
     
    
     
-    
     override func reloadData()
     {
-        
-//        let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
-//        self.addSubview(imageView)
-        
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
         self.bubbleSection = NSMutableArray()
@@ -107,24 +102,24 @@ class TableView:UITableView,UITableViewDelegate, UITableViewDataSource
         }
         super.reloadData()
         
+        if(count > 0){
         //滑向最后一部分
         let secno = self.bubbleSection.count - 1
         let indexPath =  IndexPath(row:(self.bubbleSection[secno] as AnyObject).count,section:secno)
         
         self.scrollToRow(at: indexPath,                at:UITableViewScrollPosition.bottom,animated:true)
+        }
     }
     
     func toDown() {
+        if(self.chatDataSource.rowsForChatTable(self) > 0){
         //滑向最后一部分
         let secno = self.bubbleSection.count - 1
         let indexPath =  IndexPath(row:(self.bubbleSection[secno] as AnyObject).count,section:secno)
-        
         self.scrollToRow(at: indexPath,                at:UITableViewScrollPosition.bottom,animated:true)
+        }
+
     }
-    
-    
-    
-    
     
     //按日期排序方法
     func sortDate(_ m1: Any, m2: Any) -> ComparisonResult {

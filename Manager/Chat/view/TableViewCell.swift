@@ -1,11 +1,3 @@
-//
-//  TableViewCell.swift
-//  Manager
-//
-//  Created by 冰洁  杨 on 2018/3/18.
-//  Copyright © 2018年 冰洁  杨. All rights reserved.
-//
-
 import UIKit
 
 class TableViewCell:UITableViewCell {
@@ -28,6 +20,7 @@ class TableViewCell:UITableViewCell {
         super.init(style: UITableViewCellStyle.default, reuseIdentifier:cellId)
         rebuildUserInterface()
         self.backgroundColor = UIColor(red: 0xff, green: 0xff, blue: 0xff, alpha: 0)
+
     }
     
     func rebuildUserInterface() {
@@ -119,4 +112,3 @@ class TableViewCell:UITableViewCell {
         }
     }
 }
-

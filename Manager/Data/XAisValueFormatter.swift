@@ -10,13 +10,16 @@ import Foundation
 import Charts
 
 class XAisValueFormatter: NSObject, IAxisValueFormatter {
+    
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        guard let numberFormatter = numberFormatter
+        guard numberFormatter != nil
             else {
                 return ""
         }
         
-        return numberFormatter.string(for: value)! + ":00"
+//        print(value)
+        
+        return DataViewController.time[Int(value)]
     }
     
     fileprivate var numberFormatter: NumberFormatter?

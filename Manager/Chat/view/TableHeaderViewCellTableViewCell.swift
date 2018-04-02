@@ -1,11 +1,3 @@
-//
-//  TableHeaderViewCellTableViewCell.swift
-//  Manager
-//
-//  Created by 冰洁  杨 on 2018/3/18.
-//  Copyright © 2018年 冰洁  杨. All rights reserved.
-//
-
 import UIKit
 
 class TableHeaderViewCell:UITableViewCell
@@ -21,6 +13,7 @@ class TableHeaderViewCell:UITableViewCell
     {
         super.init(style: UITableViewCellStyle.default, reuseIdentifier:cellId)
         self.backgroundColor = UIColor(red: 0xff, green: 0xff, blue: 0xff, alpha: 0)
+
     }
     
     class func getHeight() -> CGFloat
@@ -32,7 +25,7 @@ class TableHeaderViewCell:UITableViewCell
     {
         self.height  = 30.0
         let dateFormatter =  DateFormatter()
-        dateFormatter.dateFormat = "yyyy年MM月dd日"
+        dateFormatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
         let text =  dateFormatter.string(from: value)
         
         if (self.label != nil)
@@ -50,12 +43,10 @@ class TableHeaderViewCell:UITableViewCell
 //        self.label.shadowOffset = CGSize(width: 0, height: 1)
 //        self.label.shadowColor = UIColor.white
         
-        self.label.textColor = UIColor.white
-        self.label.alpha = 0.6
+        self.label.textColor = UIColor.lightGray
         
         self.label.backgroundColor = UIColor.clear
         
         self.addSubview(self.label)
     }
 }
-

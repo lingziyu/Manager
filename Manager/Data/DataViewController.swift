@@ -9,13 +9,24 @@
 import UIKit
 import Charts
 import Alamofire
+import Foundation
+import NVActivityIndicatorView
 
 
 class DataViewController: UIViewController {
     var numbers : [Double] = []
-    var time: [Double] = []
+    static var time: [String] = []
     var chartTitle: String?
- 
+    
+    
+    @IBOutlet weak var minetable: UITableView!
+    override func viewWillAppear(_ animated: Bool) {
+        if let bar = self.tabBarController {
+            bar.tabBar.isHidden = true
+        }
+        self.navigationController?.isNavigationBarHidden=false;
+    }
+    
     @IBOutlet weak var lineChartTitle: UILabel!{
         didSet{
             if chartTitle != nil {
@@ -25,54 +36,121 @@ class DataViewController: UIViewController {
     }
     
     @IBOutlet weak var chtChart: LineChartView!
+    struct RuffData:Codable  {
+        let date:String
+        let value:Int
+        let type:DataType
+    }
+    
+    enum DataType:String,Codable {
+        case temp
+        case illum
+        case humid
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        numbers.append(37)
-        time.append(9)
-        numbers.append(38)
-        time.append(10)
-        numbers.append(32)
-         time.append(11)
-        numbers.append(26)
-         time.append(12)
-        numbers.append(30)
-         time.append(13)
-        numbers.append(28)
-         time.append(14)
-        numbers.append(22)
-         time.append(15)
-        numbers.append(23)
-        time.append(16)
+        
+        self.chtChart.noDataText = "数据加载中……"
 
-        updateGraph()
+       
+
+        let cellWidth = Int(self.view.frame.width / 3)
+        let cellHeight = Int(self.view.frame.height / 8)
+        let x = Int(Int(self.view.frame.width / 2) - cellWidth / 2)
+        let y = Int(Int(self.view.frame.height / 2) - cellHeight / 2)
+        let frame = CGRect(x: x, y: y, width: cellWidth, height: cellHeight)
+        let activityIndicatorView = NVActivityIndicatorView(frame: frame,
+                                                            type: NVActivityIndicatorType.lineScale,color: UIColor(red: 0x86/255, green: 0xbe/255, blue: 0xbb/255, alpha: 1), padding: 10)
+        self.view.addSubview(activityIndicatorView)
         
         
+        activityIndicatorView.startAnimating()
+        
+        
+        Alamofire.request("http://120.79.245.126:8010/getData")
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+          
+                    if let json = response.result.value {
+
+                        let dict = json as! Dictionary<String,AnyObject>
+                        let code = dict["code"] as! Int
+                        switch (code){
+                        case 0:
+                            
+                            DataViewController.time.removeAll()
+                            let ruffDatas = dict["ruffData"] as! Array<Dictionary<String,AnyObject>>
+                            for ruffData in ruffDatas {
+                                if let a = ruffData["date"] as? String{
+                                    DataViewController.time.append(a)
+                                }
+                            
+                                switch(self.chartTitle){
+                                case "湿度"?:
+                                    self.numbers.append(ruffData["humid"] as! Double)
+                                case "温度"?:
+                                    self.numbers.append(ruffData["temp"] as! Double)
+                                case "光照"?:
+                                    self.numbers.append(ruffData["illum"] as! Double)
+                                case .none:
+                                    print("no data")
+                                case .some(_):
+                                    print("no data")
+                                }
+                            }
+                            activityIndicatorView.stopAnimating()
+                            self.chtChart.noDataText = "暂无数据"
+                            self.updateGraph()
+
+                        case 200:
+                            print("无权限访问")
+
+                        case 400:
+                            print("服务端错误")
+
+                            
+                        default:
+                            print("Error Code")
+                        }
+                        
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                    self.chtChart.noDataText = "暂无数据"
+                }
+        }
+
+
         
     }
+    
+  
     
     
     func updateGraph(){
         var lineChartEntry  = [ChartDataEntry]() //this is the Array that will eventually be displayed on the graph.
         
-        
+//        let a = (self.numbers.count > 10) ? 10 : self.numbers.count
         //here is the for loop
-        for i in 0..<numbers.count {
+        for i in 0..<self.numbers.count  {
             
-            let value = ChartDataEntry(x: time[i], y: numbers[i]) // here we set the X and Y status in a data chart entry
+            let value = ChartDataEntry(x: Double(i), y: numbers[i]) // here we set the X and Y status in a data chart entry
             lineChartEntry.append(value) // here we add it to the data set
         }
         
-        chtChart.animate(xAxisDuration: 1.0, yAxisDuration: 1.0)
+        chtChart.animate(xAxisDuration: 1.0, yAxisDuration: 2.0, easingOption: .easeOutCirc)
         chtChart.chartDescription?.enabled = false
         chtChart.rightAxis.enabled = false
         chtChart.xAxis.drawGridLinesEnabled  = false
         chtChart.xAxis.labelPosition = XAxis.LabelPosition.bottom
         chtChart.legend.enabled = false
-        
-        
-
+        chtChart.pinchZoomEnabled  = true
+//        let b = CGAffineTransform(scaleX: CGFloat(2), y: CGFloat(1))
+//        chtChart.viewPortHandler.refresh( newMatrix: __CGAffineTransformMake(1.5, 0, 0, 1, 0, 0), chart: chtChart, invalidate: false)
         if chartTitle != nil{
             let xtimeFormatter = NumberFormatter()
             xtimeFormatter.numberStyle = .decimal
@@ -123,5 +201,16 @@ class DataViewController: UIViewController {
     }
 
 
+}
+
+
+extension String {
+    func mySubString(to index: Int) -> String {
+        return String(self[..<self.index(self.startIndex, offsetBy: index)])
+    }
+    
+    func mySubString(from index: Int) -> String {
+        return String(self[self.index(self.startIndex, offsetBy: index)...])
+    }
 }
 
