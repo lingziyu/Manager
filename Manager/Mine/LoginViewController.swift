@@ -48,6 +48,70 @@ class LoginViewController: UIViewController {
         
         
     }
+    
+    
+    @IBAction func signup(_ sender: UIButton) {
+        let parameters : [String: Any] = [
+            "userId":name.text ?? "",
+            "password":password.text ?? "",
+            ]
+        
+        
+        Alamofire.request("http://120.79.245.126:8010/register", method: .post, parameters: parameters,encoding: JSONEncoding.default)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    debugPrint(response)
+                    if let json = response.result.value {
+                        let dict = json as? Dictionary<String,AnyObject>
+                        
+                        let alertController = UIAlertController(title: "注册成功!",
+                                                                message: nil, preferredStyle: .alert)
+                        
+//                        print(dict)
+                        
+                        if(dict!["code"]as? Int==0){
+//                            let auth = dict!["auth"] as! String
+                            
+                            UserDefaults.standard.setValue(self.name.text, forKey: "name")
+                            UserDefaults.standard.setValue(self.password.text, forKey: "password")
+//                            UserDefaults.standard.setValue(auth, forKey: "auth")
+                            
+                           
+                            
+                            //显示提示框
+                            self.present(alertController, animated: true, completion: nil)
+                            //两秒钟后自动消失
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                                self.presentedViewController?.dismiss(animated: false, completion: nil)
+                                
+                                let sb = UIStoryboard(name: "Main", bundle:nil)
+                                let vc = sb.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
+                                self.present(vc, animated: true, completion: nil)
+                            }
+                            
+                        }else{
+                            
+                            
+                        }
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                    let alertController = UIAlertController(title: "注册失败!",
+                                                            message: nil, preferredStyle: .alert)
+                    //显示提示框
+                    self.present(alertController, animated: true, completion: nil)
+                    //两秒钟后自动消失
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                        self.presentedViewController?.dismiss(animated: false, completion: nil)
+                    }
+                }
+        }
+        
+    }
+    
+    
 
     @IBAction func login(_ sender: Any) {
         
